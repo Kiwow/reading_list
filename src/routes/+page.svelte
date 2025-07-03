@@ -1,0 +1,119 @@
+<main class="flow wrapper">
+	<button type="button" class="add-link">Add link</button>
+	<section class="flow">
+		<h2>Unread articles</h2>
+		<ol role="list" class="flow links">
+			<li class="link">
+				<a href="#" class="link-title">Example article</a>
+				<menu class="link-actions" role="list">
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Mark as read</span>
+							✅
+						</button>
+					</li>
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Delete</span>
+							🚮
+						</button>
+					</li>
+				</menu>
+			</li>
+			<li class="link">
+				<a href="#" class="link-title">
+					Another article, this time with a much longer name&mdash;indeed, it is a long one
+				</a>
+				<menu class="link-actions" role="list">
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Mark as read</span>
+							✅
+						</button>
+					</li>
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Delete</span>
+							🚮
+						</button>
+					</li>
+				</menu>
+			</li>
+			<li class="link">
+				<a href="#" class="link-title">The third example article</a>
+				<menu class="link-actions" role="list">
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Mark as read</span>
+							✅
+						</button>
+					</li>
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Delete</span>
+							🚮
+						</button>
+					</li>
+				</menu>
+			</li>
+		</ol>
+	</section>
+	<section class="flow">
+		<h2>Read articles</h2>
+		<ol role="list" class="flow links">
+			<li class="link">
+				<a href="#" class="link-title">Example article</a>
+				<menu class="link-actions" role="list">
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Mark as unread</span>
+							♻
+						</button>
+					</li>
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Delete</span>
+							🚮
+						</button>
+					</li>
+				</menu>
+			</li>
+			<li class="link">
+				<a href="#" class="link-title">
+					Another article, this time with a much longer name&mdash;indeed, it is a long one
+				</a>
+				<menu class="link-actions" role="list">
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Mark as unread</span>
+							♻
+						</button>
+					</li>
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Delete</span>
+							🚮
+						</button>
+					</li>
+				</menu>
+			</li>
+			<li class="link">
+				<a href="#" class="link-title">The third example article</a>
+				<menu class="link-actions" role="list">
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Mark as unread</span>
+							♻
+						</button>
+					</li>
+					<li>
+						<button type="button">
+							<span class="visually-hidden">Delete</span>
+							🚮
+						</button>
+					</li>
+				</menu>
+			</li>
+		</ol>
+	</section>
+</main>
