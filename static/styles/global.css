@@ -83,7 +83,7 @@ button {
 
   &:hover,
   &:active {
-    background: var(--button-accent-background, lightgray);
+    background: var(--button-background-accent, lightgray);
   }
 }
 
@@ -98,6 +98,7 @@ button {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
+  column-gap: var(--space-2xs);
 }
 
 .link-actions {
@@ -124,6 +125,13 @@ button {
     text-decoration: underline;
   }
 }
+
+.no-links-message {
+		max-width: max-content;
+		margin-inline: auto;
+		font-size: var(--step--1);
+		color: var(--text-muted, gray);
+	}
 
 .add-link {
   display: block;
