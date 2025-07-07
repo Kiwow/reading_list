@@ -95,7 +95,7 @@ main {
 }
 
 button {
-  background: var(--button-background, transparent);
+  background: var(--button-background, white);
   border: solid 0.1rem black;
   border-radius: 0.2rem;
   padding: var(--space-3xs);
