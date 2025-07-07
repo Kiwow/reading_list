@@ -1,4 +1,4 @@
-export const unreadLinks = $state([
+export const exampleUnreadLinks = [
 	{
 		title: 'Figma - made by Evan',
 		href: 'https://madebyevan.com/figma/?utm_source=substack&utm_medium=email'
@@ -51,9 +51,9 @@ export const unreadLinks = $state([
 		title: 'Yet another example article',
 		href: '#3'
 	}
-]);
+] as const;
 
-export const readLinks = $state([
+export const exampleReadLinks = [
 	{
 		title: 'Example article',
 		href: '#4'
@@ -66,4 +66,4 @@ export const readLinks = $state([
 		title: 'Yet another example article',
 		href: '#6'
 	}
-]);
+] as const;

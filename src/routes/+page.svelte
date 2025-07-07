@@ -1,8 +1,10 @@
 <script lang="ts">
 	import type { Link, LinkType } from '$lib/storage/generic';
 	import { BrowserLinkStorage } from '$lib/storage/browserstorage';
+	import { exampleReadLinks, exampleUnreadLinks } from '$lib/example-links.svelte';
 	import AddLink from '../components/add-link.svelte';
 	import Links from '../components/links.svelte';
+	import DebugButton from '../components/debug-button.svelte';
 
 	const localLinkStorage = new BrowserLinkStorage();
 
@@ -64,3 +66,18 @@
 		/>
 	</section>
 </main>
+
+<DebugButton
+	populate={() => {
+		// Empty the arrays without having to make them reassinable
+		unreadLinks.length = 0;
+		readLinks.length = 0;
+
+		for (const link of exampleUnreadLinks) {
+			unreadLinks.push(link);
+		}
+		for (const link of exampleReadLinks) {
+			readLinks.push(link);
+		}
+	}}
+/>
