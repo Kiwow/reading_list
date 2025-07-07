@@ -39,7 +39,7 @@
 </script>
 
 <ol role="list" class="flow links">
-	{#each links as link, index}
+	{#each links as link, index (link.href)}
 		<li class="link">
 			<a href={link.href} class="link-title">{link.title}</a>
 			<menu class="link-actions" role="list">

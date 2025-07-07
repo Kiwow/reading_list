@@ -67,6 +67,19 @@ h2 {
   margin-block-start: var(--flow-space, 1em);
 }
 
+:focus-visible {
+  outline-offset: var(--focus-ring-offset, 0.4em);
+  outline-width: var(--focus-ring-width, 2px);
+  outline-color: var(--focus-ring-color, black);
+  outline-style: var(--focus-ring-style, solid);
+}
+
+body {
+  font-family: "Atkinson Hyperlegible Next", -apple-system, BlinkMacSystemFont, avenir next, avenir,
+  segoe ui, helvetica neue, Adwaita Sans, Cantarell, Ubuntu, roboto, noto, helvetica, arial,
+  sans-serif;
+}
+
 main {
   --wrapper-max-width: 45rem;
   --gutter: var(--space-xs-s);
@@ -117,25 +130,38 @@ button {
 }
 
 .link a {
-  text-decoration: none;
   color: currentColor;
+  /* text-decoration: none; */
+  text-decoration-thickness: from-font;
 
-  &:hover,
-  &:active {
-    text-decoration: underline;
-  }
+  display: inline-flex;
+  height: 100%;
+  align-items: center;
 }
 
 .no-links-message {
-		max-width: max-content;
-		margin-inline: auto;
-		font-size: var(--step--1);
-		color: var(--text-muted, gray);
-	}
+	max-width: max-content;
+	margin-inline: auto;
+	font-size: var(--step--1);
+	color: var(--text-muted, gray);
+}
 
 .add-link {
   display: block;
   margin-inline: auto;
   padding: var(--space-s);
   font-size: var(--step-0);
+}
+
+.link {
+  padding-inline: var(--space-xs);
+  border-radius: var(--space-3xs);
+
+  &:nth-child(odd) {
+    background-color: var(--link-background-alt, #f7f7f7);
+  }
+
+  &:hover, &:active {
+    background-color: var(--link-background-accent, #e7e7e7);
+  }
 }
