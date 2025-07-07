@@ -91,7 +91,7 @@ main {
   --gutter: var(--space-xs-s);
   --flow-space: var(--space-l);
 
-  padding-block-start: var(--space-s);
+  padding-block: var(--space-s);
 }
 
 button {

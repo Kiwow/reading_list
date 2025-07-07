@@ -1,5 +1,4 @@
-import type { Link } from '$lib/links.svelte';
-import type { LinkStorage, LinkType } from './generic';
+import type { Link, LinkStorage, LinkType } from '$lib/storage/generic';
 
 type BrowserStorage = {
 	getItem(key: string): string | null;
@@ -7,7 +6,7 @@ type BrowserStorage = {
 };
 
 export class BrowserLinkStorage implements LinkStorage {
-	constructor(private readonly storage: BrowserStorage) {}
+	constructor(private readonly storage: BrowserStorage = window.localStorage) {}
 
 	private static getStorageKey(linkType: LinkType) {
 		return `link-storage_${linkType}` as const;
@@ -18,7 +17,7 @@ export class BrowserLinkStorage implements LinkStorage {
 		return this.storage.getItem(key);
 	}
 
-	getLinkList(linkType: LinkType): Link[] {
+	getLinkList(linkType: LinkType) {
 		const value = this.getStorageValue(linkType);
 		if (value === null) {
 			return [];
@@ -37,8 +36,9 @@ export class BrowserLinkStorage implements LinkStorage {
 		} catch (err) {
 			console.error(new Error('Failed to read link list from browser storage', { cause: err }));
 
-			console.groupCollapsed('browser storage contents');
-			console.log('Recovering from failed browser storage read, below is the original contents');
+			console.groupCollapsed(
+				'Browser storage will get cleared to recover from failed read. Below is the original bad value'
+			);
 			console.log(value);
 			console.groupEnd();
 
@@ -47,10 +47,8 @@ export class BrowserLinkStorage implements LinkStorage {
 		}
 	}
 
-	setLinkList(linkType: LinkType, list: Link[]): void {
+	setLinkList(linkType: LinkType, list: Link[]) {
 		const key = BrowserLinkStorage.getStorageKey(linkType);
 		this.storage.setItem(key, JSON.stringify(list));
 	}
 }
-
-export const localLinkStorage = new BrowserLinkStorage(localStorage);

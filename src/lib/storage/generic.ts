@@ -1,4 +1,7 @@
-import type { Link } from '$lib/links.svelte';
+export type Link = {
+	title: string;
+	href: string;
+};
 
 export type LinkType = 'read' | 'unread';
 

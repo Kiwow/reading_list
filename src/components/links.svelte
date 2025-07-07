@@ -1,59 +1,38 @@
 <script lang="ts">
-	import type { Link } from '$lib/links.svelte';
-	import { readLinks, unreadLinks } from '$lib/links.svelte';
+	import type { Link } from '$lib/storage/generic';
 
 	type Props = {
 		links: Link[];
 		isUnread: boolean;
+		markAsOther(index: number): void;
+		removeLink(index: number): void;
 	};
 
-	let { links, isUnread }: Props = $props();
-
-	function markAsRead(index: number) {
-		const item = unreadLinks[index];
-		if (!item) {
-			throw new Error('No such item');
-		}
-
-		unreadLinks.splice(index, 1);
-		readLinks.unshift(item);
-	}
-
-	function markAsUnread(index: number) {
-		const item = readLinks[index];
-		if (!item) {
-			throw new Error('No such item');
-		}
-
-		readLinks.splice(index, 1);
-		unreadLinks.push(item);
-	}
-
-	function remove(fromUnread: boolean, index: number) {
-		(fromUnread ? unreadLinks : readLinks).splice(index, 1);
-	}
+	let { links, isUnread, markAsOther, removeLink }: Props = $props();
 </script>
 
 <ol role="list" class="flow links">
+  <!--
+    TODO: when adding a link with the same href as one already present, an edge case is hit
+    and rendering of the list in links.svelte might break
+  -->
 	{#each links as link, index (link.href)}
 		<li class="link">
 			<a href={link.href} rel="nofollow" class="link-title">{link.title}</a>
 			<menu class="link-actions" role="list">
 				<li>
-					{#if isUnread}
-						<button type="button" onclick={() => markAsRead(index)}>
+					<button type="button" onclick={() => markAsOther(index)}>
+						{#if isUnread}
 							<span class="visually-hidden">Mark as read</span>
 							✅
-						</button>
-					{:else}
-						<button type="button" onclick={() => markAsUnread(index)}>
+						{:else}
 							<span class="visually-hidden">Mark as unread</span>
 							♻
-						</button>
-					{/if}
+						{/if}
+					</button>
 				</li>
 				<li>
-					<button type="button" onclick={() => remove(isUnread, index)}>
+					<button type="button" onclick={() => removeLink(index)}>
 						<span class="visually-hidden">Delete</span>
 						🚮
 					</button>

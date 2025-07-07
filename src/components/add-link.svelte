@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Link } from '$lib/links.svelte';
+	import type { Link } from '$lib/storage/generic';
 
 	type Props = {
 		addUnreadLink: (linkToAdd: Link) => void;

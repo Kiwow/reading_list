@@ -1,11 +1,3 @@
-// TODO: when adding a link with the same href as one already present, an edge case is hit
-// and rendering of the list in links.svelte might break
-
-export type Link = {
-	title: string;
-	href: string;
-};
-
 export const unreadLinks = $state([
 	{
 		title: 'Figma - made by Evan',
