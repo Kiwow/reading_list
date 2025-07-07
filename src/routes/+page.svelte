@@ -1,10 +1,16 @@
 <script lang="ts">
+	import AddLink from '../components/add-link.svelte';
 	import Links from '../components/links.svelte';
+	import type { Link } from '$lib/links.svelte';
 	import { unreadLinks, readLinks } from '$lib/links.svelte';
+
+	function addUnreadLink(linkToAdd: Link): void {
+		unreadLinks.unshift(linkToAdd);
+	}
 </script>
 
 <main class="flow wrapper">
-	<button type="button" class="add-link">Add link</button>
+	<AddLink {addUnreadLink} />
 	<section class="flow">
 		<h2>Unread articles</h2>
 		<Links links={unreadLinks} isUnread={true} />

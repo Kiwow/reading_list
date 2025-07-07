@@ -1,10 +1,6 @@
 <script lang="ts">
+	import type { Link } from '$lib/links.svelte';
 	import { readLinks, unreadLinks } from '$lib/links.svelte';
-
-	type Link = {
-		title: string;
-		href: string;
-	};
 
 	type Props = {
 		links: Link[];
