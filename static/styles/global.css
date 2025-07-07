@@ -101,17 +101,26 @@ button {
 }
 
 .links {
-  --flow-space: var(--space-s);
+  --flow-space: var(--space-m);
 }
 
 .link {
+  --flow-space: var(--space-s);
   font-size: var(--step-0);
-  padding-block: var(--space-2xs);
-
+  padding: var(--space-2xs) var(--space-xs);
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   column-gap: var(--space-2xs);
+  background-color: var(--link-background, white);
+
+  &:nth-child(odd) {
+    background-color: var(--link-background-alt, #f7f7f7);
+  }
+
+  &:has(> a:hover, > a:active) {
+    background-color: var(--link-background-accent, #e7e7e7);
+  }
 }
 
 .link-actions {
@@ -131,8 +140,7 @@ button {
 
 .link a {
   color: currentColor;
-  /* text-decoration: none; */
-  text-decoration-thickness: from-font;
+  text-decoration: none;
 
   display: inline-flex;
   height: 100%;
@@ -151,17 +159,4 @@ button {
   margin-inline: auto;
   padding: var(--space-s);
   font-size: var(--step-0);
-}
-
-.link {
-  padding-inline: var(--space-xs);
-  border-radius: var(--space-3xs);
-
-  &:nth-child(odd) {
-    background-color: var(--link-background-alt, #f7f7f7);
-  }
-
-  &:hover, &:active {
-    background-color: var(--link-background-accent, #e7e7e7);
-  }
 }
