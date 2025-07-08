@@ -137,7 +137,6 @@ button {
   display: grid;
   grid-row: 1 / span 2;
   grid-template-rows: subgrid;
-
   --button-border-radius: 0;
   --button-padding: var(--space-xs) var(--space-2xs);
 }
@@ -160,7 +159,6 @@ button {
   text-wrap: balance;
   color: currentColor;
   text-decoration: none;
-
   outline: var(--tile-outline, solid black 0.1rem);
 
   display: inline-flex;
