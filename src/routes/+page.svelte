@@ -48,7 +48,7 @@
 <main class="flow wrapper">
 	<AddLink {addUnreadLink} />
 	<section class="flow">
-		<h2>Unread articles</h2>
+		<h2>Unread links</h2>
 		<Links
 			links={unreadLinks}
 			isUnread={true}
@@ -57,7 +57,7 @@
 		/>
 	</section>
 	<section class="flow">
-		<h2>Read articles</h2>
+		<h2>Read links</h2>
 		<Links
 			links={readLinks}
 			isUnread={false}
