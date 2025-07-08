@@ -144,6 +144,11 @@ button {
   display: contents;
 }
 
+.link-actions button {
+  border: none;
+  outline: var(--button-border, solid black 0.1rem);
+}
+
 .link-title {
   grid-row: 1 / span 2;
 
@@ -154,8 +159,7 @@ button {
   color: currentColor;
   text-decoration: none;
 
-  border: solid black 0.1rem;
-  border-inline-end-width: 0;
+  outline: solid black 0.1rem;
 
   display: inline-flex;
   flex-direction: column;
