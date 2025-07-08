@@ -136,6 +136,7 @@ button {
 
 	&:hover,
 	&:active {
+		color: var(--button-text-accent, var(--button-text, black));
 		background: var(--button-background-accent, lightgray);
 	}
 }
