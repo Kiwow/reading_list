@@ -56,6 +56,13 @@ body {
 	background-color: var(--background-primary, white);
 }
 
+input[type='text'] {
+	border: var(--input-border, var(--button-border, solid 0.1rem currentColor));
+	padding: var(--input-padding, var(--space-3xs));
+	color: var(--input-background, var(--text-primary));
+	background-color: var(--input-background, var(--background-alt));
+}
+
 .visually-hidden {
 	border: 0;
 	clip: rect(0 0 0 0);
