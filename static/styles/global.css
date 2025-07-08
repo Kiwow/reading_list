@@ -115,6 +115,8 @@ button {
 
 .link {
   --flow-space: var(--space-s);
+  --tile-outline: solid 0.1rem currentColor;
+
   font-size: var(--step-0);
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -142,7 +144,7 @@ button {
 
 .link-actions button {
   border: none;
-  outline: var(--button-border, solid black 0.1rem);
+  outline: var(--tile-outline, var(--button-border, solid black 0.1rem));
 }
 
 .link-title {
@@ -155,7 +157,7 @@ button {
   color: currentColor;
   text-decoration: none;
 
-  outline: solid black 0.1rem;
+  outline: var(--tile-outline, solid black 0.1rem);
 
   display: inline-flex;
   flex-direction: column;
