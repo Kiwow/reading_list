@@ -28,10 +28,10 @@
 		<li class="link">
 			<a href={link.href} rel="nofollow" class="link-title">
 				{link.title}
-				<small class="link-domain-name">
+				<i class="link-domain-name">
 					<span class="visually-hidden">from</span>
 					{getLinkHost(link.href)}
-				</small>
+				</i>
 			</a>
 			<menu class="link-actions" role="list">
 				<li>
