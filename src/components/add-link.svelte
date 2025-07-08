@@ -22,26 +22,26 @@
 
 		// After successful addition, clear the form
 		hrefToAdd = '';
+		titleToAdd = '';
 	}
 </script>
 
 <form class="add-link wrapper" data-wrapper-type="inner" onsubmit={handleAddLink}>
-	<label for="add-link-href">Link</label>
-	<input
-		id="add-link-href"
-		type="text"
-		placeholder="https://example.com"
-		required
-		autocomplete="off"
-		bind:value={hrefToAdd}
-	/>
-	<label for="add-link-title">Title</label>
-	<input
-		id="add-link-title"
-		type="text"
-		placeholder="Example Article"
-		autocomplete="off"
-		bind:value={titleToAdd}
-	/>
-	<button type="submit">Add</button>
+	<div class="inputs">
+		<label>
+			Link
+			<input
+				type="text"
+				placeholder="https://example.com"
+				required
+				autocomplete="off"
+				bind:value={hrefToAdd}
+			/>
+		</label>
+		<label>
+			Title
+			<input type="text" placeholder="Example Article" autocomplete="off" bind:value={titleToAdd} />
+		</label>
+	</div>
+	<button type="submit">Add link</button>
 </form>
