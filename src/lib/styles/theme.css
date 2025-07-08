@@ -1,6 +1,9 @@
 :root {
 	--off-black: #1a1a1a;
+	--gray: #313233;
+	--light-gray: #515253;
 	--greenish-gray: #283641;
+	--off-white: #fafafa;
 	--light-sepia: #f1ece8;
 	--light-medium-sepia: #e2d9d0;
 	--medium-sepia: #d4c6b9;
@@ -11,6 +14,7 @@
 	--background-alt: var(--light-medium-sepia);
 	--background-accent: var(--medium-sepia);
 
+	--focus-ring-color: var(--text-primary);
 	--button-text: var(--text-primary);
 	--button-background: var(--background-primary);
 	--button-border: solid 0.1rem currentColor;
@@ -24,16 +28,10 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--text-primary: 'very TODO';
-		--text-muted: 'TODO';
-		--background-primary: 'very TODO';
-		--button-text: 'TODO';
-		--button-background: 'TODO';
-		--button-border: 'TODO';
-		--button-background-accent: 'TODO';
-		--button-background-alt: 'TODO';
-		--link-text: 'very TODO';
-		--link-background: 'TODO';
-		--link-background-alt: 'TODO';
+		--text-primary: var(--off-white);
+		--text-muted: var(--off-white);
+		--background-primary: var(--off-black);
+		--background-alt: var(--gray);
+		--background-accent: var(--light-gray);
 	}
 }
