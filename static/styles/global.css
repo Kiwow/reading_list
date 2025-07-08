@@ -127,6 +127,7 @@ button {
   grid-template-columns: 1fr auto;
   align-items: center;
   background-color: var(--link-background, white);
+  outline: var(--tile-outline, solid black 0.1rem);
 
   &:nth-child(odd) {
     background-color: var(--link-background-alt, #f7f7f7);
@@ -159,7 +160,6 @@ button {
   text-wrap: balance;
   color: currentColor;
   text-decoration: none;
-  outline: var(--tile-outline, solid black 0.1rem);
 
   display: inline-flex;
   flex-direction: column;
