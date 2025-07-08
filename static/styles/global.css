@@ -125,10 +125,6 @@ button {
   &:nth-child(odd) {
     background-color: var(--link-background-alt, #f7f7f7);
   }
-
-  &:has(> a:hover, > a:active) {
-    background-color: var(--link-background-accent, #e7e7e7);
-  }
 }
 
 .link-actions {
@@ -165,6 +161,10 @@ button {
   flex-direction: column;
   justify-content: center;
   gap: var(--space-3xs);
+
+  &:hover, &:active {
+    background-color: var(--link-background-accent, #e7e7e7);
+  }
 }
 
 .link .link-domain-name {
