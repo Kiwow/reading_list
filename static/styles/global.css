@@ -116,11 +116,10 @@ button {
 .link {
   --flow-space: var(--space-s);
   font-size: var(--step-0);
-  padding: var(--space-2xs) var(--space-xs);
   display: grid;
+  grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr auto;
   align-items: center;
-  column-gap: var(--space-2xs);
   background-color: var(--link-background, white);
 
   &:nth-child(odd) {
@@ -133,9 +132,12 @@ button {
 }
 
 .link-actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2xs);
+  display: grid;
+  grid-row: 1 / span 2;
+  grid-template-rows: subgrid;
+
+  --button-border-radius: 0;
+  --button-padding: var(--space-xs) var(--space-2xs);
 }
 
 .link-actions > li {
@@ -143,15 +145,18 @@ button {
 }
 
 .link-title {
+  grid-row: 1 / span 2;
+
+  height: 100%;
+  padding: var(--space-2xs) var(--space-xs);
   font-size: var(--step-1);
   text-wrap: balance;
-}
-
-.link a {
   color: currentColor;
   text-decoration: none;
 
-  height: 100%;
+  border: solid black 0.1rem;
+  border-inline-end-width: 0;
+
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
