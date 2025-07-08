@@ -149,11 +149,17 @@ button {
 }
 
 .link-actions {
-	display: grid;
 	grid-row: 1 / span 2;
-	grid-template-rows: subgrid;
+
 	--button-border-radius: 0;
 	--button-padding: var(--space-xs) var(--space-2xs);
+
+	display: grid;
+	grid-template-rows: subgrid;
+
+	@supports not (grid-template-rows: subgrid) {
+		height: 100%;
+	}
 }
 
 .link-actions > li {
