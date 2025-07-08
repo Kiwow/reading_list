@@ -150,9 +150,16 @@ button {
   color: currentColor;
   text-decoration: none;
 
-  display: inline-flex;
   height: 100%;
-  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-3xs);
+}
+
+.link .link-domain-name {
+  display: block;
+  font-size: var(--step--1);
 }
 
 .no-links-message {
