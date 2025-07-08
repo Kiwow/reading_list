@@ -100,7 +100,8 @@ button {
   font-weight: var(--button-font-weight, 400);
   border: var(--button-border, solid 0.1rem black);
   border-radius: var(--button-border-radius, 0.2rem);
-  padding: var(--space-3xs);
+  padding: var(--button-padding, var(--space-3xs));
+  cursor: pointer;
 
   &:hover,
   &:active {
