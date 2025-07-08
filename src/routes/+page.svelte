@@ -81,3 +81,10 @@
 		}
 	}}
 />
+
+<style>
+	:global {
+		@import '$lib/styles/reset.css';
+		@import '$lib/styles/global.css';
+	}
+</style>
