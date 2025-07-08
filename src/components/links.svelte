@@ -37,19 +37,14 @@
 				<li>
 					<button type="button" onclick={() => markAsOther(index)}>
 						{#if isUnread}
-							<span class="visually-hidden">Mark as read</span>
-							✅
+							Read
 						{:else}
-							<span class="visually-hidden">Mark as unread</span>
-							♻
+							Unread
 						{/if}
 					</button>
 				</li>
 				<li>
-					<button type="button" onclick={() => removeLink(index)}>
-						<span class="visually-hidden">Delete</span>
-						🚮
-					</button>
+					<button type="button" onclick={() => removeLink(index)}>Delete</button>
 				</li>
 			</menu>
 		</li>
