@@ -7,24 +7,41 @@
 
 	let { addUnreadLink }: Props = $props();
 
-	let linkToAdd = $state('');
+	let hrefToAdd = $state('');
+	let titleToAdd = $state('');
 
 	function handleAddLink(e: SubmitEvent) {
 		e.preventDefault();
 
-		const url = new URL(linkToAdd);
+		const url = new URL(hrefToAdd);
+		const title = titleToAdd || url.hostname;
 		addUnreadLink({
-			title: '[TODO] ' + url.hostname,
+			title,
 			href: url.href
 		});
 
 		// After successful addition, clear the form
-		linkToAdd = '';
+		hrefToAdd = '';
 	}
 </script>
 
 <form class="add-link wrapper" data-wrapper-type="inner" onsubmit={handleAddLink}>
-	<label for="add-link-input">Add a link</label>
-	<input id="add-link-input" placeholder="https://example.com" type="text" bind:value={linkToAdd} />
+	<label for="add-link-href">Link</label>
+	<input
+		id="add-link-href"
+		type="text"
+		placeholder="https://example.com"
+		required
+		autocomplete="off"
+		bind:value={hrefToAdd}
+	/>
+	<label for="add-link-title">Title</label>
+	<input
+		id="add-link-title"
+		type="text"
+		placeholder="Example Article"
+		autocomplete="off"
+		bind:value={titleToAdd}
+	/>
 	<button type="submit">Add</button>
 </form>
