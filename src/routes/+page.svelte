@@ -86,5 +86,6 @@
 	:global {
 		@import '$lib/styles/reset.css';
 		@import '$lib/styles/global.css';
+		@import '$lib/styles/theme.css';
 	}
 </style>

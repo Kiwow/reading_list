@@ -35,7 +35,6 @@
 
 :root {
 	--title-max-length: 45ch;
-	--tile-outline: solid 0.1rem currentColor;
 }
 
 h1 {
@@ -50,6 +49,11 @@ h1,
 h2,
 h3 {
 	font-weight: var(--font-weight-bold, bold);
+}
+
+body {
+	color: var(--text-primary, black);
+	background-color: var(--background-primary, white);
 }
 
 .visually-hidden {
@@ -140,6 +144,7 @@ button {
 	grid-template-rows: 1fr 1fr;
 	grid-template-columns: 1fr auto;
 	align-items: center;
+	color: var(--link-primary, black);
 	background-color: var(--link-background, white);
 	outline: var(--tile-outline, solid black 0.1rem);
 

@@ -1,0 +1,39 @@
+:root {
+	--off-black: #1a1a1a;
+	--greenish-gray: #283641;
+	--light-sepia: #f1ece8;
+	--light-medium-sepia: #e2d9d0;
+	--medium-sepia: #d4c6b9;
+
+	--text-primary: var(--off-black);
+	--text-muted: var(--greenish-gray);
+	--background-primary: var(--light-sepia);
+	--background-alt: var(--light-medium-sepia);
+	--background-accent: var(--medium-sepia);
+
+	--button-text: var(--text-primary);
+	--button-background: var(--background-primary);
+	--button-border: solid 0.1rem currentColor;
+	--button-background-accent: var(--background-accent);
+	--link-primary: var(--text-primary);
+	--link-background: var(--background-primary);
+	--link-background-alt: var(--background-alt);
+	--link-background-accent: var(--background-accent);
+	--tile-outline: var(--button-border);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--text-primary: 'very TODO';
+		--text-muted: 'TODO';
+		--background-primary: 'very TODO';
+		--button-text: 'TODO';
+		--button-background: 'TODO';
+		--button-border: 'TODO';
+		--button-background-accent: 'TODO';
+		--button-background-alt: 'TODO';
+		--link-text: 'very TODO';
+		--link-background: 'TODO';
+		--link-background-alt: 'TODO';
+	}
+}
