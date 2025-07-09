@@ -26,12 +26,13 @@
 	--tile-outline: var(--button-border);
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--text-primary: var(--off-white);
-		--text-muted: var(--off-white);
-		--background-primary: var(--off-black);
-		--background-alt: var(--gray);
-		--background-accent: var(--light-gray);
-	}
+:root[data-theme='dark'] {
+	--text-primary: var(--off-white);
+	--text-muted: var(--off-white);
+	--background-primary: var(--off-black);
+	--background-alt: var(--gray);
+	--background-accent: var(--light-gray);
+
+	--button-text-accent: var(--off-black);
+	--button-background-accent: #f28500;
 }

@@ -19,7 +19,7 @@
 	}
 </script>
 
-<ol role="list" class="flow links">
+<ol class="flow links">
 	<!--
     TODO: when adding a link with the same href as one already present, an edge case is hit
     and rendering of the list might break
@@ -33,7 +33,7 @@
 					{getLinkHost(link.href)}
 				</i>
 			</a>
-			<menu class="link-actions" role="list">
+			<menu class="link-actions">
 				<li>
 					<button type="button" onclick={() => markAsOther(index)}>
 						{#if isUnread}

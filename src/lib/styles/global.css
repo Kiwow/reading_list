@@ -250,3 +250,15 @@ button {
 .add-link label > input {
 	font-size: var(--step-0);
 }
+
+.switch-theme {
+	display: block;
+	margin-inline: auto;
+	--button-padding: 0;
+	--button-border: 0;
+}
+
+.switch-theme .switch-icon {
+	height: 75px;
+	width: auto;
+}

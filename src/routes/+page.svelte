@@ -5,17 +5,24 @@
 	import AddLink from '../components/add-link.svelte';
 	import Links from '../components/links.svelte';
 	import DebugButton from '../components/debug-button.svelte';
+	import SwitchThemeButton from '../components/theme/switch-theme-button.svelte';
+	import { onMount } from 'svelte';
 
-	const localLinkStorage = new BrowserLinkStorage();
+	let unreadLinks: Link[] = $state([]);
+	let readLinks: Link[] = $state([]);
 
-	const unreadLinks = $state(localLinkStorage.getLinkList('unread'));
-	$effect(() => {
-		localLinkStorage.setLinkList('unread', unreadLinks);
-	});
+	onMount(() => {
+		const localLinkStorage = new BrowserLinkStorage();
 
-	const readLinks = $state(localLinkStorage.getLinkList('read'));
-	$effect(() => {
-		localLinkStorage.setLinkList('read', readLinks);
+		unreadLinks = localLinkStorage.getLinkList('unread');
+		$effect(() => {
+			localLinkStorage.setLinkList('unread', unreadLinks);
+		});
+
+		readLinks = localLinkStorage.getLinkList('read');
+		$effect(() => {
+			localLinkStorage.setLinkList('read', readLinks);
+		});
 	});
 
 	function addUnreadLink(linkToAdd: Link): void {
@@ -56,6 +63,7 @@
 			removeLink={(index) => remove('unread', index)}
 		/>
 	</section>
+	<SwitchThemeButton />
 	<section class="flow">
 		<h2>Read links</h2>
 		<Links
@@ -84,8 +92,10 @@
 
 <style>
 	:global {
-		@import '$lib/styles/reset.css';
-		@import '$lib/styles/global.css';
-		@import '$lib/styles/theme.css';
+		@layer reset, global, theme;
+
+		@import '$lib/styles/reset.css' layer(reset);
+		@import '$lib/styles/global.css' layer(global);
+		@import '$lib/styles/theme.css' layer(theme);
 	}
 </style>
