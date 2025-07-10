@@ -1,0 +1,6 @@
+[[headers]]
+for = "/_app/immutable/*"
+[headers.values]
+cache-control = '''
+  max-age=31536000,
+  immutable'''
