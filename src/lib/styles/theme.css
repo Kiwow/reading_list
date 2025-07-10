@@ -1,4 +1,5 @@
 :root {
+	/* Colors shared across themes */
 	--off-black: #1a1a1a;
 	--gray: #313233;
 	--light-gray: #515253;
@@ -8,6 +9,12 @@
 	--light-medium-sepia: #e2d9d0;
 	--medium-sepia: #d4c6b9;
 
+	/* Light theme */
+
+	/*
+	Main color variables, used as defaults for everything else.
+ 	A theme only needs to override these and it will get defaults for all other variables.
+   */
 	--text-primary: var(--off-black);
 	--text-muted: var(--greenish-gray);
 	--background-primary: var(--light-sepia);
