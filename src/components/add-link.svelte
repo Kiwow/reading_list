@@ -31,7 +31,7 @@
 		<label>
 			Link
 			<input
-				type="text"
+				type="url"
 				placeholder="https://example.com"
 				required
 				autocomplete="off"

@@ -56,7 +56,7 @@ body {
 	background-color: var(--background-primary, white);
 }
 
-input[type='text'] {
+input {
 	border: var(--input-border, var(--button-border, solid 0.1rem currentColor));
 	padding: var(--input-padding, var(--space-3xs));
 	color: var(--input-background, var(--text-primary));
