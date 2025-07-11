@@ -1,11 +1,10 @@
-[[redirects]]
-from = "/*"
-to = "/app.html"
-status = 200
-
 [[headers]]
 for = "/_app/immutable/*"
 [headers.values]
 cache-control = '''
     max-age=31536000,
     immutable'''
+
+[build]
+command = "pnpm run build"
+publish = "build"
