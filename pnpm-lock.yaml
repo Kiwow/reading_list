@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@github/relative-time-element':
+        specifier: ^4.4.8
+        version: 4.4.8
     devDependencies:
       '@eslint/compat':
         specifier: ^1.2.5
@@ -272,6 +276,9 @@ packages:
   '@eslint/plugin-kit@0.3.3':
     resolution: {integrity: sha512-1+WqvgNMhmlAambTvT3KPtCl/Ibr68VldY2XY40SL1CE0ZXiakFR/cbTspaF5HsnpDMvcYYoJHfl4980NBjGag==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@github/relative-time-element@4.4.8':
+    resolution: {integrity: sha512-FSLYm6F3TSQnqHE1EMQUVVgi2XjbCvsESwwXfugHFpBnhyF1uhJOtu0Psp/BB/qqazfdkk7f5fVcu7WuXl3t8Q==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1307,6 +1314,8 @@ snapshots:
     dependencies:
       '@eslint/core': 0.15.1
       levn: 0.4.1
+
+  '@github/relative-time-element@4.4.8': {}
 
   '@humanfs/core@0.19.1': {}
 

@@ -1,6 +1,7 @@
 export type Link = {
 	title: string;
 	href: string;
+	addedOn?: string;
 };
 
 export type LinkType = 'read' | 'unread';

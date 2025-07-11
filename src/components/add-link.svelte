@@ -17,7 +17,8 @@
 		const title = titleToAdd || url.hostname;
 		addUnreadLink({
 			title,
-			href: url.href
+			href: url.href,
+			addedOn: new Date().toISOString()
 		});
 
 		// After successful addition, clear the form

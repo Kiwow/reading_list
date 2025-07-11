@@ -1,4 +1,6 @@
 <script lang="ts">
+	import RelativeTimeElement from '@github/relative-time-element';
+	import { onMount } from 'svelte';
 	import type { Link } from '$lib/storage/generic';
 
 	type Props = {
@@ -17,6 +19,12 @@
 			return '';
 		}
 	}
+
+	onMount(() => {
+		if (!customElements.get('relative-time')) {
+			RelativeTimeElement.define();
+		}
+	});
 </script>
 
 <ol class="flow links">
@@ -28,10 +36,15 @@
 		<li class="link">
 			<a href={link.href} rel="nofollow" class="link-title">
 				{link.title}
-				<i class="link-domain-name">
-					<span class="visually-hidden">from</span>
-					{getLinkHost(link.href)}
-				</i>
+				<div class="additional-info">
+					<i class="link-domain-name" aria-hidden="true">
+						{getLinkHost(link.href)}
+					</i>
+					{#if Object.hasOwn(link, 'addedOn')}
+						<span class="visually-hidden">, added </span>
+						<relative-time class="time-added" datetime={link.addedOn}></relative-time>
+					{/if}
+				</div>
 			</a>
 			<menu class="link-actions">
 				<li>
