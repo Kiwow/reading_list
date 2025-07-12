@@ -28,11 +28,7 @@
 </script>
 
 <ol class="flow links">
-	<!--
-    TODO: when adding a link with the same href as one already present, an edge case is hit
-    and rendering of the list might break
-  -->
-	{#each links as link, index (link.href)}
+	{#each links as link, index (link.href.concat(' ', link.addedOn ?? ''))}
 		<li class="link">
 			<a href={link.href} rel="nofollow" class="link-title">
 				{link.title}
