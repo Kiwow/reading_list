@@ -91,6 +91,18 @@ input {
 	margin-block-start: var(--flow-space, 1em);
 }
 
+.text-box {
+	margin-block-start: 0.1em;
+}
+
+/* https://caniuse.com/?search=text-box-trim */
+@supports (text-box: cap alphabetic) {
+	.text-box {
+		margin-block-start: 0;
+		text-box: cap alphabetic;
+	}
+}
+
 :focus-visible {
 	outline-offset: var(--focus-ring-offset, 0.4em);
 	outline-width: var(--focus-ring-width, 2px);
@@ -131,7 +143,7 @@ button {
 	font-weight: var(--button-font-weight, 400);
 	border: var(--button-border, solid 0.1rem black);
 	border-radius: var(--button-border-radius, 0.2rem);
-	padding: var(--button-padding, var(--space-3xs));
+	padding: var(--button-padding, var(--space-2xs));
 	cursor: pointer;
 
 	&:hover,
@@ -180,6 +192,7 @@ button {
 }
 
 .link-actions button {
+	--button-padding: var(--space-xs-s) var(--space-2xs);
 	border: none;
 	outline: var(--tile-outline, var(--button-border, solid black 0.1rem));
 }
@@ -188,16 +201,15 @@ button {
 	grid-row: 1 / span 2;
 
 	height: 100%;
-	padding: var(--space-2xs) var(--space-xs);
+	padding-inline: var(--space-2xs-xs);
 	font-size: var(--step-1);
 	text-wrap: balance;
 	color: currentColor;
 	text-decoration: none;
+	line-height: 1.1;
 
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	gap: var(--space-3xs);
 
 	&:hover,
 	&:active {
@@ -205,10 +217,22 @@ button {
 	}
 }
 
+.link-title .main-title-wrapper {
+	flex: 1;
+
+	display: flex;
+	align-items: center;
+	margin-block: var(--space-s);
+}
+
 .link .additional-info {
+	margin-block-end: var(--space-xs);
+	line-height: 1;
+
 	display: flex;
 	justify-content: space-between;
-	gap: var(--space-xs);
+	flex-wrap: wrap;
+	gap: var(--space-3xs) var(--space-xs);
 }
 
 .link :is(.link-domain-name, .time-added) {

@@ -44,5 +44,5 @@
 			<input type="text" placeholder="Example Article" autocomplete="off" bind:value={titleToAdd} />
 		</label>
 	</div>
-	<button type="submit">Add link</button>
+	<button type="submit" class="text-box">Add link</button>
 </form>
