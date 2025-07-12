@@ -188,6 +188,7 @@ button {
 	grid-row: 1 / span 2;
 
 	height: 100%;
+	padding-inline: var(--space-2xs-xs);
 	font-size: var(--step-1);
 	text-wrap: balance;
 	color: currentColor;
@@ -196,8 +197,6 @@ button {
 
 	display: flex;
 	flex-direction: column;
-
-	--inline-space: var(--space-2xs-xs);
 
 	&:hover,
 	&:active {
@@ -211,7 +210,6 @@ button {
 	display: flex;
 	align-items: center;
 	margin-block: var(--space-s);
-	margin-inline: var(--inline-space);
 }
 
 .link-title .main-title {
@@ -228,7 +226,6 @@ button {
 
 .link .additional-info {
 	margin-block-end: var(--space-xs);
-	margin-inline: var(--inline-space);
 
 	display: flex;
 	justify-content: space-between;
