@@ -188,16 +188,16 @@ button {
 	grid-row: 1 / span 2;
 
 	height: 100%;
-	padding: var(--space-2xs) var(--space-xs);
 	font-size: var(--step-1);
 	text-wrap: balance;
 	color: currentColor;
 	text-decoration: none;
+	line-height: 1;
 
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	gap: var(--space-3xs);
+
+	--inline-space: var(--space-2xs-xs);
 
 	&:hover,
 	&:active {
@@ -205,10 +205,24 @@ button {
 	}
 }
 
+.link-title .main-title {
+	flex: 1;
+
+	display: flex;
+	align-items: center;
+	margin-block: var(--space-s);
+	margin-inline: var(--inline-space);
+	text-box: trim-both cap alphabetic;
+}
+
 .link .additional-info {
+	margin-block-end: var(--space-xs);
+	margin-inline: var(--inline-space);
+
 	display: flex;
 	justify-content: space-between;
-	gap: var(--space-xs);
+	flex-wrap: wrap;
+	gap: var(--space-3xs) var(--space-xs);
 }
 
 .link :is(.link-domain-name, .time-added) {
