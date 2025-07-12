@@ -31,9 +31,11 @@
 	{#each links as link, index (link.href.concat(' ', link.addedOn ?? ''))}
 		<li class="link">
 			<a href={link.href} rel="nofollow" class="link-title">
-				<span class="main-title">
-					{link.title}
-				</span>
+				<div class="main-title-wrapper">
+					<span class="main-title">
+						{link.title}
+					</span>
+				</div>
 				<div class="additional-info">
 					<i class="link-domain-name" aria-hidden="true">
 						{getLinkHost(link.href)}

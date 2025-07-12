@@ -205,14 +205,25 @@ button {
 	}
 }
 
-.link-title .main-title {
+.link-title .main-title-wrapper {
 	flex: 1;
 
 	display: flex;
 	align-items: center;
 	margin-block: var(--space-s);
 	margin-inline: var(--inline-space);
-	text-box: trim-both cap alphabetic;
+}
+
+.link-title .main-title {
+	margin-block-start: 0.1em;
+}
+
+/* https://caniuse.com/?search=text-box-trim */
+@supports (text-box: cap alphabetic) {
+	.link-title .main-title {
+		margin-block-start: 0;
+		text-box: cap alphabetic;
+	}
 }
 
 .link .additional-info {
