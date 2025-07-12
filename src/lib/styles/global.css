@@ -139,6 +139,11 @@ button {
 		color: var(--button-text-accent, var(--button-text, black));
 		background: var(--button-background-accent, lightgray);
 	}
+
+	@supports (text-box: cap alphabetic) {
+		text-box: cap alphabetic;
+		padding: var(--button-padding, var(--space-2xs));
+	}
 }
 
 .links {
@@ -180,6 +185,7 @@ button {
 }
 
 .link-actions button {
+	--button-padding: var(--space-xs-s) var(--space-2xs);
 	border: none;
 	outline: var(--tile-outline, var(--button-border, solid black 0.1rem));
 }
