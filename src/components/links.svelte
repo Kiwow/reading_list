@@ -28,7 +28,7 @@
 </script>
 
 <ol class="flow links">
-	{#each links as link, index (link.href.concat(" ", link.addedOn ?? "")}
+	{#each links as link, index (link.href.concat(" ", link.addedOn ?? ""))}
 		<li class="link">
 			<a href={link.href} rel="nofollow" class="link-title">
 				{link.title}
