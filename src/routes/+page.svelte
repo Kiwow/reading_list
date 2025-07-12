@@ -53,7 +53,7 @@
 <main class="flow wrapper">
 	<AddLink {addUnreadLink} />
 	<section class="flow">
-		<h2>Unread links</h2>
+		<h2 id="unread-links">Unread links</h2>
 		<Links
 			links={unreadLinks}
 			isUnread={true}
@@ -63,7 +63,7 @@
 	</section>
 	<SwitchThemeButton />
 	<section class="flow">
-		<h2>Read links</h2>
+		<h2 id="read-links">Read links</h2>
 		<Links
 			links={readLinks}
 			isUnread={false}
