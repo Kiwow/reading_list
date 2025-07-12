@@ -139,6 +139,11 @@ button {
 		color: var(--button-text-accent, var(--button-text, black));
 		background: var(--button-background-accent, lightgray);
 	}
+
+	@supports (text-box: cap alphabetic) {
+		text-box: cap alphabetic;
+		padding: var(--button-padding, var(--space-2xs));
+	}
 }
 
 .links {
@@ -180,6 +185,7 @@ button {
 }
 
 .link-actions button {
+	--button-padding: var(--space-xs-s) var(--space-2xs);
 	border: none;
 	outline: var(--tile-outline, var(--button-border, solid black 0.1rem));
 }
@@ -188,16 +194,15 @@ button {
 	grid-row: 1 / span 2;
 
 	height: 100%;
-	padding: var(--space-2xs) var(--space-xs);
+	padding-inline: var(--space-2xs-xs);
 	font-size: var(--step-1);
 	text-wrap: balance;
 	color: currentColor;
 	text-decoration: none;
+	line-height: 1.1;
 
-	display: inline-flex;
+	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	gap: var(--space-3xs);
 
 	&:hover,
 	&:active {
@@ -205,10 +210,34 @@ button {
 	}
 }
 
+.link-title .main-title-wrapper {
+	flex: 1;
+
+	display: flex;
+	align-items: center;
+	margin-block: var(--space-s);
+}
+
+.link-title .main-title {
+	margin-block-start: 0.1em;
+}
+
+/* https://caniuse.com/?search=text-box-trim */
+@supports (text-box: cap alphabetic) {
+	.link-title .main-title {
+		margin-block-start: 0;
+		text-box: cap alphabetic;
+	}
+}
+
 .link .additional-info {
+	margin-block-end: var(--space-xs);
+	line-height: 1;
+
 	display: flex;
 	justify-content: space-between;
-	gap: var(--space-xs);
+	flex-wrap: wrap;
+	gap: var(--space-3xs) var(--space-xs);
 }
 
 .link :is(.link-domain-name, .time-added) {
