@@ -91,6 +91,18 @@ input {
 	margin-block-start: var(--flow-space, 1em);
 }
 
+.text-box {
+	margin-block-start: 0.1em;
+}
+
+/* https://caniuse.com/?search=text-box-trim */
+@supports (text-box: cap alphabetic) {
+	.text-box {
+		margin-block-start: 0;
+		text-box: cap alphabetic;
+	}
+}
+
 :focus-visible {
 	outline-offset: var(--focus-ring-offset, 0.4em);
 	outline-width: var(--focus-ring-width, 2px);
@@ -131,18 +143,13 @@ button {
 	font-weight: var(--button-font-weight, 400);
 	border: var(--button-border, solid 0.1rem black);
 	border-radius: var(--button-border-radius, 0.2rem);
-	padding: var(--button-padding, var(--space-3xs));
+	padding: var(--button-padding, var(--space-2xs));
 	cursor: pointer;
 
 	&:hover,
 	&:active {
 		color: var(--button-text-accent, var(--button-text, black));
 		background: var(--button-background-accent, lightgray);
-	}
-
-	@supports (text-box: cap alphabetic) {
-		text-box: cap alphabetic;
-		padding: var(--button-padding, var(--space-2xs));
 	}
 }
 
@@ -216,18 +223,6 @@ button {
 	display: flex;
 	align-items: center;
 	margin-block: var(--space-s);
-}
-
-.link-title .main-title {
-	margin-block-start: 0.1em;
-}
-
-/* https://caniuse.com/?search=text-box-trim */
-@supports (text-box: cap alphabetic) {
-	.link-title .main-title {
-		margin-block-start: 0;
-		text-box: cap alphabetic;
-	}
 }
 
 .link .additional-info {

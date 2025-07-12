@@ -32,7 +32,7 @@
 		<li class="link">
 			<a href={link.href} rel="nofollow" class="link-title">
 				<div class="main-title-wrapper">
-					<span class="main-title">
+					<span class="main-title text-box">
 						{link.title}
 					</span>
 				</div>
@@ -48,7 +48,7 @@
 			</a>
 			<menu class="link-actions">
 				<li>
-					<button type="button" onclick={() => markAsOther(index)}>
+					<button type="button" class="text-box" onclick={() => markAsOther(index)}>
 						{#if isUnread}
 							Read
 						{:else}
@@ -57,7 +57,7 @@
 					</button>
 				</li>
 				<li>
-					<button type="button" onclick={() => removeLink(index)}>Delete</button>
+					<button type="button" class="text-box" onclick={() => removeLink(index)}>Delete</button>
 				</li>
 			</menu>
 		</li>
