@@ -5,15 +5,18 @@
 
 import { build, files, version } from '$service-worker';
 
+// This makes TypeScript work properly in this file
+// See https://svelte.dev/docs/kit/service-workers#Type-safety
 const sw = self as unknown as ServiceWorkerGlobalScope;
 
-// Create a unique cache name for this deployment
 const CACHE = `cache-${version}` as const;
 
 const ASSETS = [
-	...build, // the app itself
+	...build, // files bundled by Vite
 	...files // everything in `static`
 ];
+
+console.log({ CACHE, ASSETS });
 
 sw.addEventListener('install', (event) => {
 	// Create a new cache and add all files to it
@@ -44,7 +47,7 @@ sw.addEventListener('fetch', (event) => {
 		const url = new URL(event.request.url);
 		const cache = await caches.open(CACHE);
 
-		// `build`/`files` can always be served from the cache
+		// assets can always be served from the cache
 		if (ASSETS.includes(url.pathname)) {
 			const response = await cache.match(url.pathname);
 
