@@ -16,8 +16,6 @@ const ASSETS = [
 	...files // everything in `static`
 ];
 
-console.log({ CACHE, ASSETS });
-
 sw.addEventListener('install', (event) => {
 	// Create a new cache and add all files to it
 	async function addFilesToCache() {
