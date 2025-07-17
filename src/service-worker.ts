@@ -37,6 +37,14 @@ sw.addEventListener('activate', (event) => {
 	event.waitUntil(deleteOldCaches());
 });
 
+function canCacheResource(request: Request, response: Response): boolean {
+	return (
+		response.status === 200 &&
+		'no-store' !== response.headers.get('Cache-Control') &&
+		'no-store' !== request.headers.get('Cache-Control')
+	);
+}
+
 sw.addEventListener('fetch', (event) => {
 	// ignore POST requests etc
 	if (event.request.method !== 'GET') return;
@@ -65,7 +73,7 @@ sw.addEventListener('fetch', (event) => {
 				throw new Error('invalid response from fetch');
 			}
 
-			if (response.status === 200) {
+			if (canCacheResource(event.request, response)) {
 				cache.put(event.request, response.clone());
 			}
 
