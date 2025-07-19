@@ -53,6 +53,32 @@ sw.addEventListener('fetch', (event) => {
 		const url = new URL(event.request.url);
 		const cache = await caches.open(CACHE);
 
+		if (url.pathname === '/' && url.origin === sw.origin && event.request.mode === 'navigate') {
+			// For navigation requests of the homepage, we use a cache-first policy
+			// This means that we serve the document from the cache if available,
+			// and only afterwards go to the network and update the cache
+			const response = await cache.match(event.request);
+			if (response !== undefined) {
+				// Enqueue the request for the network
+				fetch(event.request)
+					.catch((error) => {
+						throw new Error('Failed to fetch document in the background', { cause: error });
+					})
+					.then((response) => {
+						if (canCacheResource(event.request, response)) {
+							return cache.put(event.request, response.clone());
+						}
+						throw new Error('Cannot cache document navigation??');
+					})
+					.catch((error) => {
+						throw new Error('Failed to cache document navigation', { cause: error });
+					});
+
+				// Returned cached response without waiting for the network
+				return response;
+			}
+		}
+
 		// assets can always be served from the cache
 		if (ASSETS.includes(url.pathname)) {
 			const response = await cache.match(url.pathname);
