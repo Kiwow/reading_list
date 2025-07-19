@@ -37,12 +37,13 @@ sw.addEventListener('activate', (event) => {
 	event.waitUntil(deleteOldCaches());
 });
 
+function shouldNotCache(request: Request): boolean {
+	const cache = request.cache;
+	return cache === 'no-store' || cache === 'no-cache' || cache === 'reload';
+}
+
 function canCacheResource(request: Request, response: Response): boolean {
-	return (
-		response.status === 200 &&
-		'no-store' !== response.headers.get('Cache-Control') &&
-		'no-store' !== request.headers.get('Cache-Control')
-	);
+	return response.status === 200 && !shouldNotCache(request);
 }
 
 sw.addEventListener('fetch', (event) => {
@@ -53,7 +54,12 @@ sw.addEventListener('fetch', (event) => {
 		const url = new URL(event.request.url);
 		const cache = await caches.open(CACHE);
 
-		if (url.pathname === '/' && url.origin === sw.origin && event.request.mode === 'navigate') {
+		if (
+			url.pathname === '/' &&
+			url.origin === sw.origin &&
+			event.request.mode === 'navigate' &&
+			!shouldNotCache(event.request)
+		) {
 			// For navigation requests of the homepage, we use a cache-first policy
 			// This means that we serve the document from the cache if available,
 			// and only afterwards go to the network and update the cache
