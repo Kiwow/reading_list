@@ -241,6 +241,10 @@ button {
 	font-style: normal;
 }
 
+.link .time-added {
+	margin-inline-start: auto;
+}
+
 .no-links-message {
 	max-width: max-content;
 	margin-inline: auto;
