@@ -65,28 +65,27 @@ async function cacheFirstWithRefresh(cache: Cache, request: Request) {
 	return networkResponsePromise;
 }
 
-function networkFirst(cache: Cache, request: Request) {
-	return fetch(request)
-		.then((response) => {
-			// if we're offline, fetch can return a value that is not a Response
-			// instead of throwing - and we can't pass this non-Response to respondWith
-			if (!(response instanceof Response)) {
-				throw new Error('invalid response from fetch');
-			}
-			if (canCacheResource(request, response)) {
-				cache.put(request, response.clone());
-			}
-			return response;
-		})
-		.catch(async (err) => {
-			const response = await cache.match(request);
-			if (response !== undefined) {
-				return response;
-			}
-			// if there's no cache, then just error out
-			// as there is nothing we can do to respond to this request
-			throw err;
-		});
+async function networkFirst(cache: Cache, request: Request) {
+	try {
+		const response = await fetch(request);
+		// if we're offline, fetch can return a value that is not a Response
+		// instead of throwing - and we can't pass this non-Response to respondWith
+		if (!(response instanceof Response)) {
+			throw new Error('invalid response from fetch');
+		}
+		if (canCacheResource(request, response)) {
+			cache.put(request, response.clone());
+		}
+		return response;
+	} catch (err) {
+		const cachedResponse = await cache.match(request);
+		if (cachedResponse !== undefined) {
+			return cachedResponse;
+		}
+		// if there's no cache, then just error out
+		// as there is nothing we can do to respond to this request
+		throw err;
+	}
 }
 
 sw.addEventListener('fetch', (event) => {
