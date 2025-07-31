@@ -65,7 +65,7 @@ async function cacheFirstWithRefresh(cache: Cache, request: Request) {
 	return networkResponsePromise;
 }
 
-function networkRequest(cache: Cache, request: Request) {
+function networkFirst(cache: Cache, request: Request) {
 	return fetch(request)
 		.then((response) => {
 			// if we're offline, fetch can return a value that is not a Response
@@ -116,7 +116,7 @@ sw.addEventListener('fetch', (event) => {
 
 		// for everything else, try the network first, but
 		// fall back to the cache if we're offline
-		return networkRequest(cache, event.request);
+		return networkFirst(cache, event.request);
 	}
 
 	event.respondWith(respond());
