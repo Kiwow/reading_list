@@ -37,12 +37,55 @@ sw.addEventListener('activate', (event) => {
 	event.waitUntil(deleteOldCaches());
 });
 
+function shouldNotCache(request: Request): boolean {
+	const cache = request.cache;
+	return cache === 'no-store' || cache === 'no-cache' || cache === 'reload';
+}
+
 function canCacheResource(request: Request, response: Response): boolean {
-	return (
-		response.status === 200 &&
-		'no-store' !== response.headers.get('Cache-Control') &&
-		'no-store' !== request.headers.get('Cache-Control')
-	);
+	return response.status === 200 && !shouldNotCache(request);
+}
+
+async function cacheFirstWithRefresh(cache: Cache, request: Request) {
+	// Enqueue the refresh request
+	const networkResponsePromise = fetch(request).then((response) => {
+		if (canCacheResource(request, response)) {
+			cache.put(request, response.clone());
+		}
+		return response;
+	});
+
+	const response = await cache.match(request);
+	if (response !== undefined) {
+		// Return cached response without waiting for the network
+		return response;
+	}
+
+	// If response wasn't in cache, wait for and return network response
+	return networkResponsePromise;
+}
+
+async function networkFirst(cache: Cache, request: Request) {
+	try {
+		const response = await fetch(request);
+		// if we're offline, fetch can return a value that is not a Response
+		// instead of throwing - and we can't pass this non-Response to respondWith
+		if (!(response instanceof Response)) {
+			throw new Error('invalid response from fetch');
+		}
+		if (canCacheResource(request, response)) {
+			cache.put(request, response.clone());
+		}
+		return response;
+	} catch (err) {
+		const cachedResponse = await cache.match(request);
+		if (cachedResponse !== undefined) {
+			return cachedResponse;
+		}
+		// if there's no cache, then just error out
+		// as there is nothing we can do to respond to this request
+		throw err;
+	}
 }
 
 sw.addEventListener('fetch', (event) => {
@@ -53,10 +96,18 @@ sw.addEventListener('fetch', (event) => {
 		const url = new URL(event.request.url);
 		const cache = await caches.open(CACHE);
 
+		if (
+			url.pathname === '/' &&
+			url.origin === sw.origin &&
+			event.request.mode === 'navigate' &&
+			!shouldNotCache(event.request)
+		) {
+			return cacheFirstWithRefresh(cache, event.request);
+		}
+
 		// assets can always be served from the cache
 		if (ASSETS.includes(url.pathname)) {
 			const response = await cache.match(url.pathname);
-
 			if (response) {
 				return response;
 			}
@@ -64,31 +115,7 @@ sw.addEventListener('fetch', (event) => {
 
 		// for everything else, try the network first, but
 		// fall back to the cache if we're offline
-		try {
-			const response = await fetch(event.request);
-
-			// if we're offline, fetch can return a value that is not a Response
-			// instead of throwing - and we can't pass this non-Response to respondWith
-			if (!(response instanceof Response)) {
-				throw new Error('invalid response from fetch');
-			}
-
-			if (canCacheResource(event.request, response)) {
-				cache.put(event.request, response.clone());
-			}
-
-			return response;
-		} catch (err) {
-			const response = await cache.match(event.request);
-
-			if (response) {
-				return response;
-			}
-
-			// if there's no cache, then just error out
-			// as there is nothing we can do to respond to this request
-			throw err;
-		}
+		return networkFirst(cache, event.request);
 	}
 
 	event.respondWith(respond());
