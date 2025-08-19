@@ -40,3 +40,25 @@
 	--background-alt: var(--gray);
 	--background-accent: var(--light-gray);
 }
+
+:root[data-theme='colorful'] {
+	--blue: #69f;
+	--white: #fff;
+	--black: #000;
+	--light-green: #7effd4;
+	--pink: #cc99cd;
+
+	--text-primary: var(--black);
+	--text-muted: var(--off-black);
+	--background-primary: var(--white);
+	--background-alt: var(--light-green);
+	--background-accent: var(--pink);
+
+	.link:nth-child(even) {
+		background-color: var(--background-accent);
+	}
+
+	.link button {
+		background-color: inherit;
+	}
+}
