@@ -53,7 +53,7 @@
 		const localStorageContents = JSON.parse(fileContents);
 		for (const [key, value] of Object.entries(localStorageContents)) {
 			if (typeof key !== 'string' || typeof value !== 'string') {
-				throw new Error('Bad data');
+				throw new Error('Its not bad data im just dumb, its not your fault poor file, i love u ok, ur very cute, bye');
 			}
 		}
 
