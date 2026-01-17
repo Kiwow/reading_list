@@ -4,10 +4,8 @@
 	import { onMount } from 'svelte';
 	import { on } from 'svelte/events';
 
-	type ThemeColor = 'light' | 'dark' | 'colorful';
-
 	// eslint-disable-next-line svelte/prefer-writable-derived
-	let currentTheme: ThemeColor = $state('colorful'); // Temporary for colorful theme development
+	let currentTheme: 'light' | 'dark' = $state('light');
 
 	onMount(() => {
 		const mediaQuery = matchMedia('(prefers-color-scheme: dark)');
@@ -18,7 +16,7 @@
 		});
 
 		$effect(() => {
-			currentTheme = (localStorage.getItem('color-theme') as ThemeColor) ?? preferredTheme;
+			currentTheme = (localStorage.getItem('color-theme') as 'dark' | 'light') ?? preferredTheme;
 		});
 
 		return removeMediaQueryListener;
