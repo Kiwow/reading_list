@@ -53,7 +53,13 @@
 		const localStorageContents = JSON.parse(fileContents);
 		for (const [key, value] of Object.entries(localStorageContents)) {
 			if (typeof key !== 'string' || typeof value !== 'string') {
-				throw new Error('Its not bad data im just dumb, its not your fault poor file, i love u ok, ur very cute, bye');
+				throwErr();
+			}
+
+			try {
+				JSON.parse(value);
+			} catch (err) {
+				throwErr(err as Error);
 			}
 		}
 
@@ -64,6 +70,13 @@
 		}
 
 		location.reload();
+	}
+
+	function throwErr(cause?: Error): never {
+		throw new Error(
+			'Its not bad data the function is just dumb, its not your fault poor file, i love u ok, ur very cute, bye',
+			{ cause: cause ?? undefined }
+		);
 	}
 </script>
 
