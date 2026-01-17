@@ -42,10 +42,24 @@
 }
 
 :root[data-theme='custom'] {
-	--text-primary: var(--color-secondary);
-	--background-primary: var(--color-primary);
-	--background-alt: var(--color-tertiary, oklch(from var(--background-primary) calc(l - 0.1) c h));
+	/*
+    User chosen:
+    --color-text
+    --color-background
+    --color-background-alt
+    --color-background-accent
+  */
+
+	--text-primary: var(--color-text);
+	--background-primary: var(--color-background);
+	--background-alt: var(
+		--color-background-alt,
+		oklch(from var(--background-primary) calc(l - 0.1) c h)
+	);
+	--background-accent: var(
+		--color-background-accent,
+		oklch(from var(--background-primary) l calc(c + 0.1) h)
+	);
 
 	--text-muted: oklch(from var(--text-primary) l calc(c - 0.15) h);
-	--background-accent: oklch(from var(--background-primary) l calc(c + 0.15) h);
 }

@@ -152,6 +152,10 @@ button {
 	}
 }
 
+::placeholder {
+	color: oklch(from currentColor calc(l - 0.1) calc(c - 0.2) h);
+}
+
 .links {
 	--flow-space: var(--space-m);
 }
@@ -298,8 +302,8 @@ button {
 	}
 
 	button[aria-pressed='true'] {
-		color: var(--button-text-accent, var(--button-text, black));
-		background: var(--button-background-accent, lightgray);
+		color: var(--button-text-accent, var(--button-text));
+		background: var(--button-background-alt, var(--background-alt));
 	}
 
 	svg * {
@@ -336,10 +340,6 @@ button {
 
 	input[type='color'] {
 		width: 100%;
-	}
-
-	::placeholder {
-		color: oklch(from currentColor calc(l - 0.2) calc(c - 0.2) h);
 	}
 
 	label {

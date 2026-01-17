@@ -1,35 +1,36 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { ThemeVariable } from '$lib/theme/theme-variable.svelte';
 
-	const primaryDefault = '#8c8cff';
-	const secondaryDefault = '#ffff8c';
+	const backgroundDefault = '#8c8cff';
+	const textDefault = '#ffff8c';
 
-	let primary: string = $state(primaryDefault);
-	let secondary: string = $state(secondaryDefault);
-	let tertiary: string | undefined = $state();
+	const loaded = JSON.parse(localStorage.getItem('custom-colors') ?? '{}') as Record<
+		string,
+		string
+	>;
 
-	onMount(() => {
-		const loaded = localStorage.getItem('custom-colors');
-		if (loaded) {
-			({ primary, secondary, tertiary } = JSON.parse(loaded));
-		}
-	});
+	const text = $state(
+		new ThemeVariable('--color-text', loaded.text ?? loaded.secondary ?? textDefault)
+	);
+	const background = $state(
+		new ThemeVariable(
+			'--color-background',
+			loaded.background ?? loaded.primary ?? backgroundDefault
+		)
+	);
+	const backgroundAlt = $state(new ThemeVariable('--color-background-alt', loaded.backgroundAlt));
+	const backgroundAccent = $state(
+		new ThemeVariable('--color-background-accent', loaded.backgroundAccent)
+	);
 
 	$effect(() => {
-		document.documentElement.style.setProperty('--color-primary', primary);
-		document.documentElement.style.setProperty('--color-secondary', secondary);
-		if (tertiary) {
-			document.documentElement.style.setProperty('--color-tertiary', tertiary);
-		} else {
-			document.documentElement.style.removeProperty('--color-tertiary');
-		}
-
 		localStorage.setItem(
 			'custom-colors',
 			JSON.stringify({
-				primary,
-				secondary,
-				tertiary
+				text,
+				background,
+				backgroundAlt,
+				backgroundAccent
 			})
 		);
 	});
@@ -38,26 +39,38 @@
 <menu class="theme-editor">
 	<li>
 		<label>
-			<span class="label">Primary</span>
-			<input type="text" placeholder={primaryDefault} bind:value={primary} />
-			<input type="color" bind:value={primary} />
+			<span class="label">Text</span>
+			<input type="text" placeholder={textDefault} bind:value={text.value} />
+			<input type="color" bind:value={text.value} />
 		</label>
 	</li>
 	<li>
 		<label>
-			<span class="label">Secondary</span>
-			<input type="text" placeholder={secondaryDefault} bind:value={secondary} />
-			<input type="color" bind:value={secondary} />
+			<span class="label">Background</span>
+			<input type="text" placeholder={backgroundDefault} bind:value={background.value} />
+			<input type="color" bind:value={background.value} />
 		</label>
 	</li>
 	<li>
 		<label>
-			<span class="label">Tertiary</span>
-			<input type="text" placeholder="#c0ffee" bind:value={tertiary} />
+			<span class="label">Background (alternative)</span>
+			<input type="text" placeholder="#c0ffee" bind:value={backgroundAlt.value} />
 			<input
 				type="color"
 				oninput={function () {
-					tertiary = this.value;
+					backgroundAlt.value = this.value;
+				}}
+			/>
+		</label>
+	</li>
+	<li>
+		<label>
+			<span class="label">Background (accent)</span>
+			<input type="text" placeholder="#c0ffee" bind:value={backgroundAccent.value} />
+			<input
+				type="color"
+				oninput={function () {
+					backgroundAccent.value = this.value;
 				}}
 			/>
 		</label>
