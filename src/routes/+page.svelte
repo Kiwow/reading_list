@@ -21,6 +21,27 @@
 		$effect(() => {
 			localLinkStorage.setLinkList('read', readLinks);
 		});
+
+		// @ts-expect-error We're attaching a method on the window on purpose
+		window.fillExampleLinks = async function () {
+			const called = localStorage.getItem('filled-examples');
+			if (called) {
+				console.warn(
+					"You've already called this function and filling the examples again would cause trouble with duplicate URLs. If you want to do so anyway, delete the 'filled-examples' localStorage item and call this again."
+				);
+				return;
+			}
+
+			const data = (await import('$lib/storage/example_localstorage.json')).default;
+
+			const unread = JSON.parse(data['link-storage_unread']);
+			const read = JSON.parse(data['link-storage_read']);
+
+			unreadLinks.push(...unread);
+			readLinks.push(...read);
+
+			localStorage.setItem('filled-examples', 'true');
+		};
 	});
 
 	function addUnreadLink(linkToAdd: Link): void {
