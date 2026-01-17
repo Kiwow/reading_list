@@ -321,7 +321,7 @@ button {
 	outline: var(--tile-outline);
 	font-size: var(--step-0);
 
-	> menu {
+	> :where(menu) {
 		display: contents;
 	}
 
@@ -338,17 +338,6 @@ button {
 		align-items: center;
 	}
 
-	.buttons {
-		grid-column: span 3;
-
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-
-		li {
-			display: contents;
-		}
-	}
-
 	input {
 		height: 2lh;
 	}
@@ -358,6 +347,17 @@ button {
 	}
 
 	label {
+		display: contents;
+	}
+}
+
+.import-export {
+	grid-column: span 3;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+	li {
 		display: contents;
 	}
 }
