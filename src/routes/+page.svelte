@@ -3,7 +3,7 @@
 	import { BrowserLinkStorage } from '$lib/storage/browserstorage';
 	import AddLink from '../components/add-link.svelte';
 	import Links from '../components/links.svelte';
-	import SwitchThemeButton from '../components/theme/switch-theme-button.svelte';
+	import SwitchTheme from '../components/theme/switch-theme.svelte';
 	import { onMount } from 'svelte';
 
 	let unreadLinks: Link[] = $state([]);
@@ -82,7 +82,7 @@
 			removeLink={(index) => remove('unread', index)}
 		/>
 	</section>
-	<SwitchThemeButton />
+	<SwitchTheme />
 	<section class="flow">
 		<h2 id="read-links">Read links</h2>
 		<Links
@@ -96,8 +96,6 @@
 
 <style>
 	:global {
-		@layer reset, global, theme;
-
 		@import '$lib/styles/reset.css' layer(reset);
 		@import '$lib/styles/global.css' layer(global);
 		@import '$lib/styles/theme.css' layer(theme);

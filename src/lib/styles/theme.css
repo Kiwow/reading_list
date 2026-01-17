@@ -41,24 +41,11 @@
 	--background-accent: var(--light-gray);
 }
 
-:root[data-theme='colorful'] {
-	--blue: #69f;
-	--white: #fff;
-	--black: #000;
-	--light-green: #7effd4;
-	--pink: #cc99cd;
+:root[data-theme='custom'] {
+	--text-primary: var(--color-secondary);
+	--background-primary: var(--color-primary);
+	--background-alt: var(--color-tertiary, oklch(from var(--background-primary) calc(l - 0.1) c h));
 
-	--text-primary: var(--black);
-	--text-muted: var(--off-black);
-	--background-primary: var(--white);
-	--background-alt: var(--light-green);
-	--background-accent: var(--pink);
-
-	.link:nth-child(even) {
-		background-color: var(--background-accent);
-	}
-
-	.link button {
-		background-color: inherit;
-	}
+	--text-muted: oklch(from var(--text-primary) l calc(c - 0.15) h);
+	--background-accent: oklch(from var(--background-primary) l calc(c + 0.15) h);
 }

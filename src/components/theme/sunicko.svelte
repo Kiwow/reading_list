@@ -8,12 +8,14 @@
 >
 	<defs>
 		<style>
-			.cls-1 {
-				fill: none;
-				stroke: #fff;
-				stroke-linecap: round;
-				stroke-miterlimit: 10;
-				stroke-width: 5px;
+			@layer global.icons {
+				.cls-1 {
+					fill: none;
+					stroke: #fff;
+					stroke-linecap: round;
+					stroke-miterlimit: 10;
+					stroke-width: 5px;
+				}
 			}
 		</style>
 	</defs>
