@@ -1,0 +1,91 @@
+<script lang="ts">
+	import { ThemeManager } from '$lib/theme/manager.svelte';
+	import Mesicek from './mesicek.svelte';
+	import Sunicko from './sunicko.svelte';
+	import ThemeEditor from './theme-editor.svelte';
+	import { onMount } from 'svelte';
+
+	let themeManager: ThemeManager | undefined = $state(undefined);
+	onMount(() => {
+		themeManager = new ThemeManager();
+	});
+</script>
+
+<menu class="theme-switcher">
+	<li>
+		<button
+			type="button"
+			aria-pressed={'light' === themeManager?.currentTheme ? true : undefined}
+			onclick={() => themeManager?.switchTheme('light')}
+		>
+			<span class="visually-hidden">Switch to light theme</span>
+			<Sunicko />
+		</button>
+	</li>
+	<li>
+		<button
+			type="button"
+			aria-pressed={'dark' === themeManager?.currentTheme ? true : undefined}
+			onclick={() => themeManager?.switchTheme('dark')}
+		>
+			<span class="visually-hidden">Switch to dark theme</span>
+			<Mesicek />
+		</button>
+	</li>
+	<li>
+		<button
+			type="button"
+			aria-pressed={'custom' === themeManager?.currentTheme ? true : undefined}
+			onclick={() => themeManager?.switchTheme('custom')}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="75px"
+				height="75px"
+				xmlns:xlink="http://www.w3.org/1999/xlink"
+				viewBox="0 0 283.46 283.46"
+				aria-hidden="true"
+			>
+				<style>
+					@scope {
+						[aria-pressed='true'] :scope .cls-1 {
+							fill: url(#linear-gradient);
+						}
+
+						:scope {
+							height: 55px;
+						}
+					}
+				</style>
+				<defs>
+					<linearGradient
+						id="linear-gradient"
+						x1="279.69"
+						y1="58.17"
+						x2=".38"
+						y2="219.43"
+						gradientUnits="userSpaceOnUse"
+					>
+						<stop offset="0" stop-color="#259bbc" />
+						<stop offset=".05" stop-color="#2a9ab5" />
+						<stop offset=".11" stop-color="#3a99a4" />
+						<stop offset=".19" stop-color="#559688" />
+						<stop offset=".27" stop-color="#799360" />
+						<stop offset=".36" stop-color="#a88f2e" />
+						<stop offset=".41" stop-color="#c58d0f" />
+						<stop offset=".98" stop-color="#c24599" />
+					</linearGradient>
+				</defs>
+				<path
+					class="cls-1"
+					d="M255.71,230.95V22.43s0-.04,0-.07c0-.01,0-.03,0-.04v-2.32c0-6.96-5.65-12.61-12.61-12.61H76.09s-.02,0-.03,0c-.05,0-.1,0-.14,0-30.16.4-48.17,16.43-48.17,42.87v213.18c0,6.96,5.65,12.61,12.61,12.61h167.01c6.96,0,12.61-5.65,12.61-12.61v-1.61c0-6.06,0-17.34,23.29-17.66,6.96-.09,12.53-5.81,12.44-12.78,0-.08-.01-.15-.01-.23,0-.08.01-.16.01-.24ZM197.07,37.66H57.47c3.28-2.82,8.95-4.91,18.78-5.05h122.88c-.8,1.61-1.49,3.29-2.07,5.05ZM52.97,150.58c4.73,2.12,9.97,3.31,15.48,3.31,20.94,0,37.97-17.03,37.97-37.97s-17.03-37.97-37.97-37.97c-5.51,0-10.75,1.19-15.48,3.31v-18.38h141.79v55.61c-4.55-1.93-9.54-3-14.78-3-20.94,0-37.97,17.03-37.97,37.97s17.03,37.97,37.97,37.97c5.24,0,10.24-1.07,14.78-3v62.4H52.97v-100.27ZM55.7,115.92c0-7.03,5.72-12.75,12.75-12.75s12.75,5.72,12.75,12.75-5.72,12.75-12.75,12.75-12.75-5.72-12.75-12.75ZM192.73,153.47c0,7.03-5.72,12.75-12.75,12.75s-12.75-5.72-12.75-12.75,5.72-12.75,12.75-12.75,12.75,5.72,12.75,12.75ZM219.99,223.12V52.8c0-4.65.01-12.36,10.5-15.84v183.2c-3.77.69-7.28,1.69-10.5,2.97Z"
+				/>
+			</svg>
+			<span class="visually-hidden">Switch to custom theme</span>
+		</button>
+	</li>
+</menu>
+
+{#if themeManager?.currentTheme === 'custom'}
+	<ThemeEditor />
+{/if}
