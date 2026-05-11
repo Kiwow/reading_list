@@ -1,11 +1,6 @@
 minimumReleaseAge: 2880
 minimumReleaseAgeIgnoreMissingTime: false
 trustPolicy: no-downgrade
-trustPolicyExclude:
-  # chokidar lost provenance in 4.0.2, then regained it in 5.0
-  # svelte-check declares a dependency on chokidar^4.0.1
-  # this can be removed once they upgrade
-  - 'chokidar@4.0.3'
 
 enableGlobalVirtualStore: true
 
@@ -13,3 +8,9 @@ verifyDepsBeforeRun: error
 dedupePeers: true
 allowBuilds:
   esbuild: false
+
+overrides:
+  # chokidar lost provenance in 4.0.2, then regained it in 5.0
+  # svelte-check declares a dependency on chokidar^4.0.1
+  # this can be removed once they upgrade
+  chokidar: ^5.0.0
