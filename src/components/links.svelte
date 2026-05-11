@@ -30,6 +30,7 @@
 <ol class="flow links">
 	{#each links as link, index (link.href.concat(' ', link.addedOn ?? ''))}
 		<li class="link">
+			<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 			<a href={link.href} rel="nofollow" class="link-title">
 				<div class="main-title-wrapper">
 					<span class="main-title text-box">
